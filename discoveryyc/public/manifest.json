@@ -21,5 +21,10 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "theme_red": "#A30A11",
+  "theme_silver": "#BFB5AF",
+  "theme_bone": "#ECE2D0",
+  "theme_pink": "#D5B9B2",
+  "theme_teal": "#0F7173"
 }
