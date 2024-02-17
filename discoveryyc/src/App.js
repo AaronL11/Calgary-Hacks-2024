@@ -1,12 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { ChakraProvider } from '@chakra-ui/react'
 import TopBar from './Components/TopBar';
 
 function App() {
   return (
-    <div className="App">
-      <TopBar></TopBar>
+    <ChakraProvider>
+      <TopBar/>
+      <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -22,7 +24,8 @@ function App() {
         </a>
       </header>
     </div>
-  );
+    </ChakraProvider>
+  )
 }
 
 export default App;
