@@ -4,7 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { layout, text, images } from '../components/Styles';
 
-const url = 'https://discoveryyc.aidandriscoll.tech/sites'
+const url = 'http://10.13.149.40:4344/sites'
 
 export default function MapScreen({ navigation }) {
     const [markers, setMarkers] = useState([]);
@@ -31,9 +31,9 @@ export default function MapScreen({ navigation }) {
     return (
         <SafeAreaProvider>
             <View style={layout.page}>
-                {/* <Text style={text.heading}>Map Screen</Text> */}
+                <Text style={text.heading}>Map Screen</Text>
                 <MapView
-                    style={{ flex : 1 }}
+                    style={{ flex : 1, marginTop: 15, marginRight: 15, marginLeft:15}}
                     provider={PROVIDER_GOOGLE}
                     showsUserLocation
                     showsMyLocationButton
@@ -59,6 +59,8 @@ export default function MapScreen({ navigation }) {
                         </Marker>
                     )})}
                 </MapView>
+                <Text style={text.titlesTeal}>Find historical sites, public art, parks, and more, on the map!</Text>
+
             </View>
         </SafeAreaProvider>
 )};
