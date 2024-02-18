@@ -33,7 +33,7 @@ export default function MapScreen({ navigation }) {
             <View style={layout.page}>
                 <Text style={text.heading}>Map Screen</Text>
                 <MapView
-                    style={{ flex : 1 }}
+                    style={{ flex : 1, marginTop: 15, marginRight: 15, marginLeft:15}}
                     provider={PROVIDER_GOOGLE}
                     showsUserLocation
                     showsMyLocationButton
@@ -60,6 +60,8 @@ export default function MapScreen({ navigation }) {
                         />
                     )})}
                 </MapView>
+                <Text style={text.titlesTeal}>Find historical sites, public art, parks, and more, on the map!</Text>
+
             </View>
         </SafeAreaProvider>
 )};

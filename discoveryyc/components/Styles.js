@@ -61,8 +61,10 @@ export const text = StyleSheet.create({
         fontSize: 35,
         fontWeight: 'bold',
         letterSpacing: 0.25,
-        color: 'black',
-        margin: 20
+        color: themeColours.red,
+        marginTop: 20,
+        
+        textAlign:"center"
     },
     small: {
         fontSize: 15,
@@ -92,6 +94,16 @@ export const text = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         color: themeColours.red,
+        marginTop: 20
+    }, 
+    titlesTeal: {
+        marginBottom:15,
+        marginLeft: 10,
+        marginRight: 10,
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: themeColours.teal,
         marginTop: 20
     }
 });
@@ -123,7 +135,8 @@ export const inputBox = StyleSheet.create({
         fontSize: 24,
         margin: 10,
         paddingLeft: 22,
-        width: '90%',
+        width: '75%',
+        marginLeft: "auto",
         height: 50,
         backgroundColor: 'white',
     }
