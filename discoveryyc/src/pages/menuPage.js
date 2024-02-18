@@ -7,7 +7,7 @@ const MenuPage = () => {
         height:"100vh"
     }}>
       <main>
-        <img style={{width:"300%", height:"100px"}} src={require("../Assets/calgaryskyline.png")} alt="City Skyline" /> 
+        <img style={{width:"300%", height:"100px"}} src={require("../Assets/calgaryskyline.png")} alt="City Skyline"/> 
         <div style={{margin:"50px"}}>
             <div style= {{textAlign: "center", fontFamily:"inherit", fontWeight:"bold", marginTop:"10px", display:"flex", flexDirection:"column"}}>
                 <h3 style= {{color:"#A30A11"}}> Locations to</h3>
