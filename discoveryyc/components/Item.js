@@ -1,30 +1,13 @@
-import React, {Component} from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import React from 'react';
+import { Text, Pressable, Image } from 'react-native';
+import { text, layout, images } from './Styles';
 
-class Item extends Component {
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>{this.props.listItem.name}</Text>
-        {/* <Text style={styles.text}>{this.props.song}</Text> */}
-      </View>
-    );
-  }
+export default function RenderItem( navigation, item ) {
+  // console.log(item)
+  return (
+      <Pressable style={layout.card} onPress={() => {navigation.navigate("CardInfo", {item})}}>
+          <Image style={images.card} source={{uri: item.item.pic_url}}/>
+          <Text style={text.card}>{item.item.name}</Text>
+      </Pressable>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'blue',
-    alignItems: 'center',
-    height: 90,
-    margin: 10,
-    width: '90%'
-  },
-  text: {
-      color: 'white',
-      fontSize: 24,
-  }
-});
-
-export default Item;

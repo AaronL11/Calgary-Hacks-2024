@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Platform, Image, View, Text, Pressable, TextInput, FlatList} from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { inputBox, layout, text, images } from '../components/Styles';
+import RenderItem from '../components/Item';
 
 const url = "http://10.13.149.40:4344/sites/"
 
@@ -47,7 +48,7 @@ export default function MenuScreen({ navigation }) {
                     keyExtractor={(item) => item._id.$oid}
                     data={markers}
                     numColumns={2}
-                    renderItem={(item) => renderItem(navigation, item)}
+                    renderItem={(item) => RenderItem(navigation, item)}
                 />
             </View>
         </SafeAreaProvider>

@@ -36,6 +36,22 @@ export const layout = StyleSheet.create({
         shadowOffset: { width: 3, height: 3 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
+    },
+    card1:  {
+        flex:2,
+        backgroundColor: 'white',
+        padding: 20,
+        maxHeight: 300,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 8,
+        marginHorizontal: 16,
+        marginBottom:5,
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 3, height: 3 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
     }
 });
 
@@ -70,7 +86,7 @@ export const text = StyleSheet.create({
         marginTop: 20
     },
     titlesRed: {
-        flex: 1,
+        marginBottom:5,
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
