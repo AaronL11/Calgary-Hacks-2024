@@ -7,8 +7,7 @@ export default function HomeScreen({ navigation }) {
     return (
         <SafeAreaProvider>
             <View style={layout.homePage}>
-                <Image style={{flex: 1, aspectRatio: 0.7, maxHeight:100, minWidth:700, resizeMode:"contain"}} source={require('../assets/calgaryskyline.png')}/>
-                <Text style={text.heading}>Home Screen</Text>
+                <Image style={{width:"100%", maxHeight:"12%", }} source={require('../assets/calgaryskyline.png')}/>
             </View>
         </SafeAreaProvider>
 )};

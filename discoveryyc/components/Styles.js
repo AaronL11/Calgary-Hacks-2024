@@ -18,7 +18,6 @@ export const layout = StyleSheet.create({
     homePage: {
         flex: 1,
         flexDirection:'column',
-        justifyContent: 'flex-start',
         backgroundColor: themeColours.bone,
         margin: 0
     }
