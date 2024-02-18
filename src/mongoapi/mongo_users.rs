@@ -23,8 +23,8 @@ impl MongoUsers {
             Err(_) => format!("Error loading env variable"),
         };
         let client = Client::with_uri_str(uri).unwrap();
-        let db = client.database("rustDB");
-        let col: Collection<User> = db.collection("User");
+        let db = client.database("DiscoverYYC");
+        let col: Collection<User> = db.collection("User Data");
         MongoUsers { col }
     }
 
