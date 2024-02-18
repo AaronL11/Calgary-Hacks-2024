@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { LoginHeader, Header } from './components/TopBar';
+import { Header } from './components/TopBar';
 import LoginScreen from './screens/LoginScreen';
 import TabNavigator from './components/BottomBar';
 
@@ -19,7 +19,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={startScreen}>
-        <Stack.Screen name="Login" component={LoginScreen} options={{header: (props) => <LoginHeader/>}}/>
+        <Stack.Screen name="Login" component={LoginScreen} options={{header: (props) => <Header/>}}/>
         <Stack.Screen name="TabNavigator" component={TabNavigator} options={{header: (props) => <Header/>}}/>
       </Stack.Navigator>
     </NavigationContainer>

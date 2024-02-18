@@ -11,8 +11,16 @@ export const bottomBarStyles = {iconSize: PixelRatio.getPixelSizeForLayoutSize(1
 export const layout = StyleSheet.create({
     page: {
         flex: 1,
-        flexDirection:'row', 
+        flexDirection:'column', 
         backgroundColor: themeColours.bone,
+        margin: 0
+    },
+    homePage: {
+        flex: 1,
+        flexDirection:'column',
+        justifyContent: 'flex-start',
+        backgroundColor: themeColours.bone,
+        margin: 0
     }
 });
 

@@ -4,15 +4,6 @@ import { Image } from 'react-native';
 import { themeColours } from './Styles';
 // import { IconButton } from './CustomButton';
 
-const LoginHeader = () => {
-
-  return (
-    <Appbar.Header style={{margin:20, justifyContent:'center', alignItems:'center', backgroundColor:themeColours.pink}}>
-      <Image style={{flex: 1, aspectRatio: 1.5, resizeMode: 'contain',}} source={require('../assets/DiscoverYYC_logo.png')}/>
-    </Appbar.Header>
-  );
-};
-
 const Header = () => {
 
   return (
@@ -23,4 +14,4 @@ const Header = () => {
   );
 };
 
-export { LoginHeader, Header };
+export { Header };
