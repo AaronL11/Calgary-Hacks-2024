@@ -14,9 +14,9 @@ export function CustomButton(props) {
 };
 
 export function IconButton(props) {
-  const {onPress, name, size=65, color=themeColours.secondary} = props;
+  const {onPress, name, size=60, color="black"} = props;
   return ( 
-    <Pressable onPress={onPress}>
+    <Pressable style={{margin:5, marginBottom: 0}} onPress={onPress}>
       <Ionicons name={name} size={size} color={color}/>
     </Pressable>
   );

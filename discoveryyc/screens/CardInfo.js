@@ -1,15 +1,18 @@
 import React from 'react'
-import {View, Text, Button} from 'react-native'
+import {ScrollView, Text, Image} from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { layout, text } from '../components/Styles';
-import { CustomButton } from '../components/CustomButton';
+import { layout, text, images, themeColours } from '../components/Styles';
+import { IconButton } from '../components/CustomButton';
 
-export default function CardInfo({ navigation }) {
+export default function CardInfo({ route, navigation }) {
+    const { item } = route.params.item;
     return (
-        <SafeAreaProvider>
-            <View style={layout.page}>
-                <CustomButton title="Go back" onPress={() => {navigation.goBack()}}>Go Back</CustomButton>
-                <Text style={text.heading}>Card Info</Text>
-            </View>
+        <SafeAreaProvider style={{backgroundColor: themeColours.bone}}>
+            <IconButton onPress={() => {navigation.goBack()}} name="arrow-back-outline"/>
+            <ScrollView style={layout.page}>
+                <Image style={images.page} source={{uri: item.pic_url}}/>
+                <Text style={text.heading}>{item.name}</Text>
+                <Text style={text.small}>{item.significance_summ}</Text>
+            </ScrollView>
         </SafeAreaProvider>
 )};

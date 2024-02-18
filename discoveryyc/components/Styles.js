@@ -47,6 +47,14 @@ export const text = StyleSheet.create({
         color: 'black',
         margin: 20
     },
+    small: {
+        fontSize: 15,
+        // fontWeight: 'bold',
+        letterSpacing: 0.25,
+        color: 'black',
+        marginTop: 0,
+        margin: 20
+    },
     button: {
         fontSize: 25,
         fontWeight: 'bold',
@@ -108,6 +116,12 @@ export const images = StyleSheet.create({
         flex: 2, 
         aspectRatio: 1.5, 
         maxHeight: 90,
+        resizeMode: 'contain',
+    },
+    page: {
+        margin: 20,
+        marginBottom: 0, 
+        minHeight: 200,
         resizeMode: 'contain',
     }
 });
