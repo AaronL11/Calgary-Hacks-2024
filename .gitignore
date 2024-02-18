@@ -1,0 +1,7 @@
+# Generated files
+target/
+
+# Secret files
+cert.pem
+cert.pem-chain
+key.pem
