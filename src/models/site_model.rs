@@ -10,7 +10,7 @@ pub struct QueryParams {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct Point {
+pub struct Point {
     #[serde(rename = "type")]
     point_type: String,
     coordinates: Vec<f64>,
