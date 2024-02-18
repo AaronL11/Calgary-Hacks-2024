@@ -1,12 +1,26 @@
 use chrono::{DateTime, Utc};
-use mongodb::bson::oid::ObjectId;
-use serde::{Deserialize, Serialize}; // Import TimeZone for creating default dates
+use mongodb::bson::{oid::ObjectId, Bson};
+use rocket::FromForm;
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Deserialize, FromForm)]
+pub struct QueryParams {
+    pub lat: f64,
+    pub lon: f64,
+}
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Point {
     #[serde(rename = "type")]
     point_type: String,
     coordinates: Vec<f64>,
+}
+
+#[derive(Debug, Serialize)]
+pub struct GeoJson {
+    #[serde(rename = "_id")]
+    id: Bson,
+    point: Point,
 }
 
 // Implementing Default for Point

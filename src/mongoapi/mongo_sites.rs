@@ -33,18 +33,44 @@ impl MongoSites {
     pub fn get_site(&self, id: &String) -> Result<Site, Error> {
         let obj_id = ObjectId::parse_str(id).unwrap();
         let filter = doc! {"_id": obj_id};
-        let user_detail = self
+        let site_detail = self
             .col
             .find_one(filter, None)
             .ok()
             .expect("Error getting site");
-        Ok(user_detail.unwrap())
+        Ok(site_detail.unwrap())
     }
 
     pub fn get_all_sites(&self) -> Result<Vec<Site>, Error> {
         let cursors = self.col.find(None, None).ok().expect("Error getting sites");
-        let users = cursors.map(|doc| doc.unwrap()).collect();
+        let sites = cursors.map(|doc| doc.unwrap()).collect();
 
-        Ok(users)
+        Ok(sites)
+    }
+
+    pub fn get_sites_nearby(&self, lat: f64, lon: f64, radius: f64) -> Result<Vec<Site>, Error> {
+        let filter = doc! {
+            "point": {
+                "$near": {
+                    "$geometry": {
+                        "type": "Point",
+                        "coordinates": [ lon, lat ],
+                    },
+                    "$maxDistance": radius,
+                }
+            }
+        };
+
+        // Call `find` and directly handle the Result to get the Cursor.
+        let cursors = self
+            .col
+            .find(filter, None)
+            .ok()
+            .expect("Error getting nearby sites");
+
+        // Now, `cursor` is a Cursor<Site>, not a Result.
+        let sites = cursors.map(|doc| doc.unwrap()).collect();
+
+        Ok(sites)
     }
 }

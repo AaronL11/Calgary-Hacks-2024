@@ -3,7 +3,7 @@ use mongodb::{bson::oid::ObjectId, results::InsertOneResult};
 use rocket::{catch, delete, get, http::Status, post, put, serde::json::Json, Request, State};
 
 #[post("/user", data = "<new_user>")]
-pub fn create_user(
+pub async fn create_user(
     db: &State<MongoUsers>,
     new_user: Json<User>,
 ) -> Result<Json<InsertOneResult>, Status> {
@@ -25,7 +25,7 @@ pub fn create_user(
 }
 
 #[get("/user/<path>")]
-pub fn get_user(db: &State<MongoUsers>, path: String) -> Result<Json<User>, Status> {
+pub async fn get_user(db: &State<MongoUsers>, path: String) -> Result<Json<User>, Status> {
     let id = path;
     if id.is_empty() {
         return Err(Status::BadRequest);
@@ -39,7 +39,7 @@ pub fn get_user(db: &State<MongoUsers>, path: String) -> Result<Json<User>, Stat
 }
 
 #[put("/user/<path>", data = "<new_user>")]
-pub fn update_user(
+pub async fn update_user(
     db: &State<MongoUsers>,
     path: String,
     new_user: Json<User>,
@@ -76,7 +76,7 @@ pub fn update_user(
 }
 
 #[delete("/user/<path>")]
-pub fn delete_user(db: &State<MongoUsers>, path: String) -> Result<Json<&str>, Status> {
+pub async fn delete_user(db: &State<MongoUsers>, path: String) -> Result<Json<&str>, Status> {
     let id = path;
     if id.is_empty() {
         return Err(Status::BadRequest);
@@ -96,7 +96,7 @@ pub fn delete_user(db: &State<MongoUsers>, path: String) -> Result<Json<&str>, S
 }
 
 #[get("/users")]
-pub fn get_all_users(db: &State<MongoUsers>) -> Result<Json<Vec<User>>, Status> {
+pub async fn get_all_users(db: &State<MongoUsers>) -> Result<Json<Vec<User>>, Status> {
     let users = db.get_all_users();
 
     match users {

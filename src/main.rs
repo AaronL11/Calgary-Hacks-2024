@@ -5,7 +5,7 @@ mod mongoapi;
 #[macro_use]
 extern crate rocket;
 
-use api::site_api::{get_all_sites, get_site};
+use api::site_api::{get_all_sites, get_site, get_sites_nearby};
 use api::user_api::{create_user, delete_user, get_all_users, get_user, not_found, update_user};
 use mongoapi::mongo_sites::MongoSites;
 use mongoapi::mongo_users::MongoUsers;
@@ -24,5 +24,6 @@ fn rocket() -> _ {
         .mount("/", routes![get_all_users])
         .mount("/", routes![get_site])
         .mount("/", routes![get_all_sites])
+        .mount("/", routes![get_sites_nearby])
         .register("/", catchers![not_found])
 }
