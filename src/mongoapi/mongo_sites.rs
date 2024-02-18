@@ -16,7 +16,6 @@ pub struct MongoSites {
 
 // DiscoverYYC
 // Historical Data
-
 impl MongoSites {
     pub fn init() -> Self {
         dotenv().ok();

@@ -34,10 +34,6 @@ pub async fn get_sites_nearby(
     lon: f64,
     radius: f64,
 ) -> Result<Json<Vec<Site>>, Status> {
-    // match db.get_sites_nearby(lat, lon).await {
-    //     Ok(sites) => Ok(Json(sites)),
-    //     Err(_) => Err(Status::InternalServerError),
-    // }
     let sites = db.get_sites_nearby(lat, lon, radius);
 
     match sites {
