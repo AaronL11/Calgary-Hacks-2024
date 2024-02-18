@@ -6,7 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rocket = {version = "0.5.0", features = ["json"]}
+chrono = { version = "0.4", features = ["serde"] }
+rocket = {version = "0.5.0", features = ["json", "tls"]}
 serde = "1.0"
 dotenv = "0.15"
 mongodb = {version = "2", default-features = false, features = ["sync"]}
