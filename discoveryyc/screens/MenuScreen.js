@@ -1,363 +1,35 @@
-import React from 'react'
-import {Platform, Image, View, Text, StyleSheet, TextInput, FlatList} from 'react-native'
+import React, {useEffect, useState} from 'react'
+import {Platform, Image, View, Text, Pressable, TextInput, FlatList} from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { inputBox, layout, text, images } from '../components/Styles';
+import { useNavigation } from '@react-navigation/native';
 import { searchBar } from '../components/Styles';
 import Item from '../components/Item';
 
-// const list = [{"id":"1", "name":"item1"},{"id":"2", "name":"item2"}, {"id":"3", "name":"item3"},{"id":"4", "name":"item4"}]
-
-const list = [{
-	"id": "161",
-	"name": "Deutsch Canadier Block (Eastern Block) (Demolished - 2018)",
-	"resource_ty": "CWHR",
-	"address": "1227 MACLEOD TR SE",
-	"community": "BELTLINE",
-	"construction_yr": "1910",
-	"typology": "Shop and Apartment",
-	"orig_use_ty": "Mixed Use",
-	"orig_owner": "Unknown",
-	"master_plan_theme": "Urban Development",
-	"architect": "Plan Pattern Book",
-	"architecture_style": "Edwardian Commercial",
-	"builder": "Unknown",
-	"development_era": "1906 to 1913 (Pre WWI Boom, Age of Optimism)",
-	"activity_crit": "N/A",
-	"event_crit": "N/A",
-	"institution_crit": "N/A",
-	"person_crit": "CWHR",
-	"style_crit": "CHR",
-	"design_crit": "N/A",
-	"const_crit": "CHR",
-	"landmark_crit": "CHR",
-	"symbolic_crit": "CWHR",
-	"demolished_dt": "2018-06-15T00:00:00.000Z",
-	"significance_summ": "Heritage Character Statement\r\nThis brick structure is typical of the Edwardian Commercial style.  It features: load bearing brick with sandstone sills, pressed metal entablature and signband cornice, double hung wood windows, and, recessed storefronts.  Located on the border of the warehouse district, it is symbolic of the commercial development trend in Victoria Park which followed the street car route.   It forms part of the historic grouping of buildings along Macleod Trail.\r\n\r\nSummary History\r\nThe Deutsch Canadier Block was one of many low-rise Edwardian commercial/residential buildings constructed during Calgary's pre-World War I boom.  It was built along the original streetcar line that connected downtown Calgary with the exhibition grounds in 1909.  Joseph Schuster and Charles Pohl acquired these lots from Isaac Gideon Ruttle in 1909, and took out a building permit, recorded on 15 March 1910, for a business block to be built by day labour at an estimated cost of $13,000.00.  Within the year, however, the building became property of F.C. Lowes & Co., and remained so until 1922.  Frederick C. Lowes was a real estate agent, speculator, developer and financial broker who became one of the city's most successful and prominent businessmen during the boom.  He made, and then lost, millions of dollars.  Lowes' experience symbolized Calgary's boom-bust experience of the period.  Later owners included Black and Armstrong of Winnipeg (1922-1944), Louis Belzberg and Max Switzer (1944-1957), and Howard and Leo Blitt (1957-1978).\r\n\r\nCharles Pohl was president of Der Deutsch-Canadier, Limited, and Joseph Schuster was its secretary.  The firm published two German-language newspapers and operated a job printing press, advertising a capacity to print in English, German, French, Italian, Polish and other languages.  The company moved to Calgary from Edmonton in 1909, and became this building's namesake occupant. Der Deutsch-Canadier, a weekly newspaper billed as \"Western Canada's Largest German Paper\", was published in Calgary from 1909-1914.  In 1913, the paper announced its intention to become \"a link between all German-Canadians in Western Canada\".  The Deutsch-Canadischer Farmer, which Schuster managed, was published in Calgary from 1909 until about 1912, and was billed as \"the only German Farm Journal West of Ontario\".  The company and its newspapers were relocated to another building by 1912, and by 1914, both the printing business and the two newspapers had folded.  Schuster died suddenly in 1912, and the company was liquidated in 1914.  World War I broke out in August 1914, and anti-German attitudes quickly emerged.  The Deutsch-Canadier ceased publication around December 1914, and Pohl left the city about that time.  The building was renamed the Eastern Block.\r\n\r\nThe building's most notable residential tenant was Andrew Davison, a linotype operator for the Calgary News Telegram who lived in the building briefly around 1914.  Davison was elected to city council as an alderman in 1921, and served as mayor from 1930 to 1946 - a record that remains unmatched in Calgary's history.\r\n\r\nBesides its apartments, the building includes six storefronts facing Macleod Trail S.E.  Its occupants have included grocery and confectionery stores, butcher shops, pharmacies, barbers, shoemakers, and other shops and services (including a branch of the Merchants Bank of Canada, circa 1910-1911).  Building owners, Leo and Howard Blitt, also owned one of its commercial occupants, the Black & White Grocery and Confectionery.",
-	"federal_dsgtn": false,
-	"provincial_dsgtn": false,
-	"registered_dsgtn": false,
-	"municipal_dsgtn": false,
-	"integrity_loc": "true",
-	"integrity_des": "true",
-	"integrity_envir": "N/A",
-	"integrity_assoc": "true",
-	"is_featured_resource": "No",
-	"evaluation_author": "Simpson",
-	"last_update_dt": "2018-06-21T14:54:50.000Z",
-	"picture_type": "Contemporary",
-	"pic_url": "https://www.calgary.ca/Historic_Resource_Media/7046.jpg",
-	"point": {
-		"type": "Point",
-		"coordinates": [-114.0586247, 51.0405913]
-	}
-},
-{
-	"id": "162",
-	"name": "Place 2",
-	"resource_ty": "CWHR",
-	"address": "1227 MACLEOD TR SE",
-	"community": "BELTLINE",
-	"construction_yr": "1910",
-	"typology": "Shop and Apartment",
-	"orig_use_ty": "Mixed Use",
-	"orig_owner": "Unknown",
-	"master_plan_theme": "Urban Development",
-	"architect": "Plan Pattern Book",
-	"architecture_style": "Edwardian Commercial",
-	"builder": "Unknown",
-	"development_era": "1906 to 1913 (Pre WWI Boom, Age of Optimism)",
-	"activity_crit": "N/A",
-	"event_crit": "N/A",
-	"institution_crit": "N/A",
-	"person_crit": "CWHR",
-	"style_crit": "CHR",
-	"design_crit": "N/A",
-	"const_crit": "CHR",
-	"landmark_crit": "CHR",
-	"symbolic_crit": "CWHR",
-	"demolished_dt": "2018-06-15T00:00:00.000Z",
-	"significance_summ": "Heritage Character Statement\r\nThis brick structure is typical of the Edwardian Commercial style.  It features: load bearing brick with sandstone sills, pressed metal entablature and signband cornice, double hung wood windows, and, recessed storefronts.  Located on the border of the warehouse district, it is symbolic of the commercial development trend in Victoria Park which followed the street car route.   It forms part of the historic grouping of buildings along Macleod Trail.\r\n\r\nSummary History\r\nThe Deutsch Canadier Block was one of many low-rise Edwardian commercial/residential buildings constructed during Calgary's pre-World War I boom.  It was built along the original streetcar line that connected downtown Calgary with the exhibition grounds in 1909.  Joseph Schuster and Charles Pohl acquired these lots from Isaac Gideon Ruttle in 1909, and took out a building permit, recorded on 15 March 1910, for a business block to be built by day labour at an estimated cost of $13,000.00.  Within the year, however, the building became property of F.C. Lowes & Co., and remained so until 1922.  Frederick C. Lowes was a real estate agent, speculator, developer and financial broker who became one of the city's most successful and prominent businessmen during the boom.  He made, and then lost, millions of dollars.  Lowes' experience symbolized Calgary's boom-bust experience of the period.  Later owners included Black and Armstrong of Winnipeg (1922-1944), Louis Belzberg and Max Switzer (1944-1957), and Howard and Leo Blitt (1957-1978).\r\n\r\nCharles Pohl was president of Der Deutsch-Canadier, Limited, and Joseph Schuster was its secretary.  The firm published two German-language newspapers and operated a job printing press, advertising a capacity to print in English, German, French, Italian, Polish and other languages.  The company moved to Calgary from Edmonton in 1909, and became this building's namesake occupant. Der Deutsch-Canadier, a weekly newspaper billed as \"Western Canada's Largest German Paper\", was published in Calgary from 1909-1914.  In 1913, the paper announced its intention to become \"a link between all German-Canadians in Western Canada\".  The Deutsch-Canadischer Farmer, which Schuster managed, was published in Calgary from 1909 until about 1912, and was billed as \"the only German Farm Journal West of Ontario\".  The company and its newspapers were relocated to another building by 1912, and by 1914, both the printing business and the two newspapers had folded.  Schuster died suddenly in 1912, and the company was liquidated in 1914.  World War I broke out in August 1914, and anti-German attitudes quickly emerged.  The Deutsch-Canadier ceased publication around December 1914, and Pohl left the city about that time.  The building was renamed the Eastern Block.\r\n\r\nThe building's most notable residential tenant was Andrew Davison, a linotype operator for the Calgary News Telegram who lived in the building briefly around 1914.  Davison was elected to city council as an alderman in 1921, and served as mayor from 1930 to 1946 - a record that remains unmatched in Calgary's history.\r\n\r\nBesides its apartments, the building includes six storefronts facing Macleod Trail S.E.  Its occupants have included grocery and confectionery stores, butcher shops, pharmacies, barbers, shoemakers, and other shops and services (including a branch of the Merchants Bank of Canada, circa 1910-1911).  Building owners, Leo and Howard Blitt, also owned one of its commercial occupants, the Black & White Grocery and Confectionery.",
-	"federal_dsgtn": false,
-	"provincial_dsgtn": false,
-	"registered_dsgtn": false,
-	"municipal_dsgtn": false,
-	"integrity_loc": "true",
-	"integrity_des": "true",
-	"integrity_envir": "N/A",
-	"integrity_assoc": "true",
-	"is_featured_resource": "No",
-	"evaluation_author": "Simpson",
-	"last_update_dt": "2018-06-21T14:54:50.000Z",
-	"picture_type": "Contemporary",
-	"pic_url": "https://www.calgary.ca/Historic_Resource_Media/7046.jpg",
-	"point": {
-		"type": "Point",
-		"coordinates": [-114.0586247, 51.0405913]
-	}},
-    {
-        "id": "163",
-        "name": "place 3",
-        "resource_ty": "CWHR",
-        "address": "1227 MACLEOD TR SE",
-        "community": "BELTLINE",
-        "construction_yr": "1910",
-        "typology": "Shop and Apartment",
-        "orig_use_ty": "Mixed Use",
-        "orig_owner": "Unknown",
-        "master_plan_theme": "Urban Development",
-        "architect": "Plan Pattern Book",
-        "architecture_style": "Edwardian Commercial",
-        "builder": "Unknown",
-        "development_era": "1906 to 1913 (Pre WWI Boom, Age of Optimism)",
-        "activity_crit": "N/A",
-        "event_crit": "N/A",
-        "institution_crit": "N/A",
-        "person_crit": "CWHR",
-        "style_crit": "CHR",
-        "design_crit": "N/A",
-        "const_crit": "CHR",
-        "landmark_crit": "CHR",
-        "symbolic_crit": "CWHR",
-        "demolished_dt": "2018-06-15T00:00:00.000Z",
-        "significance_summ": "Heritage Character Statement\r\nThis brick structure is typical of the Edwardian Commercial style.  It features: load bearing brick with sandstone sills, pressed metal entablature and signband cornice, double hung wood windows, and, recessed storefronts.  Located on the border of the warehouse district, it is symbolic of the commercial development trend in Victoria Park which followed the street car route.   It forms part of the historic grouping of buildings along Macleod Trail.\r\n\r\nSummary History\r\nThe Deutsch Canadier Block was one of many low-rise Edwardian commercial/residential buildings constructed during Calgary's pre-World War I boom.  It was built along the original streetcar line that connected downtown Calgary with the exhibition grounds in 1909.  Joseph Schuster and Charles Pohl acquired these lots from Isaac Gideon Ruttle in 1909, and took out a building permit, recorded on 15 March 1910, for a business block to be built by day labour at an estimated cost of $13,000.00.  Within the year, however, the building became property of F.C. Lowes & Co., and remained so until 1922.  Frederick C. Lowes was a real estate agent, speculator, developer and financial broker who became one of the city's most successful and prominent businessmen during the boom.  He made, and then lost, millions of dollars.  Lowes' experience symbolized Calgary's boom-bust experience of the period.  Later owners included Black and Armstrong of Winnipeg (1922-1944), Louis Belzberg and Max Switzer (1944-1957), and Howard and Leo Blitt (1957-1978).\r\n\r\nCharles Pohl was president of Der Deutsch-Canadier, Limited, and Joseph Schuster was its secretary.  The firm published two German-language newspapers and operated a job printing press, advertising a capacity to print in English, German, French, Italian, Polish and other languages.  The company moved to Calgary from Edmonton in 1909, and became this building's namesake occupant. Der Deutsch-Canadier, a weekly newspaper billed as \"Western Canada's Largest German Paper\", was published in Calgary from 1909-1914.  In 1913, the paper announced its intention to become \"a link between all German-Canadians in Western Canada\".  The Deutsch-Canadischer Farmer, which Schuster managed, was published in Calgary from 1909 until about 1912, and was billed as \"the only German Farm Journal West of Ontario\".  The company and its newspapers were relocated to another building by 1912, and by 1914, both the printing business and the two newspapers had folded.  Schuster died suddenly in 1912, and the company was liquidated in 1914.  World War I broke out in August 1914, and anti-German attitudes quickly emerged.  The Deutsch-Canadier ceased publication around December 1914, and Pohl left the city about that time.  The building was renamed the Eastern Block.\r\n\r\nThe building's most notable residential tenant was Andrew Davison, a linotype operator for the Calgary News Telegram who lived in the building briefly around 1914.  Davison was elected to city council as an alderman in 1921, and served as mayor from 1930 to 1946 - a record that remains unmatched in Calgary's history.\r\n\r\nBesides its apartments, the building includes six storefronts facing Macleod Trail S.E.  Its occupants have included grocery and confectionery stores, butcher shops, pharmacies, barbers, shoemakers, and other shops and services (including a branch of the Merchants Bank of Canada, circa 1910-1911).  Building owners, Leo and Howard Blitt, also owned one of its commercial occupants, the Black & White Grocery and Confectionery.",
-        "federal_dsgtn": false,
-        "provincial_dsgtn": false,
-        "registered_dsgtn": false,
-        "municipal_dsgtn": false,
-        "integrity_loc": "true",
-        "integrity_des": "true",
-        "integrity_envir": "N/A",
-        "integrity_assoc": "true",
-        "is_featured_resource": "No",
-        "evaluation_author": "Simpson",
-        "last_update_dt": "2018-06-21T14:54:50.000Z",
-        "picture_type": "Contemporary",
-        "pic_url": "https://www.calgary.ca/Historic_Resource_Media/7046.jpg",
-        "point": {
-            "type": "Point",
-            "coordinates": [-114.0586247, 51.0405913]
-        }
-    },
-    {
-        "id": "164",
-        "name": "Place 4",
-        "resource_ty": "CWHR",
-        "address": "1227 MACLEOD TR SE",
-        "community": "BELTLINE",
-        "construction_yr": "1910",
-        "typology": "Shop and Apartment",
-        "orig_use_ty": "Mixed Use",
-        "orig_owner": "Unknown",
-        "master_plan_theme": "Urban Development",
-        "architect": "Plan Pattern Book",
-        "architecture_style": "Edwardian Commercial",
-        "builder": "Unknown",
-        "development_era": "1906 to 1913 (Pre WWI Boom, Age of Optimism)",
-        "activity_crit": "N/A",
-        "event_crit": "N/A",
-        "institution_crit": "N/A",
-        "person_crit": "CWHR",
-        "style_crit": "CHR",
-        "design_crit": "N/A",
-        "const_crit": "CHR",
-        "landmark_crit": "CHR",
-        "symbolic_crit": "CWHR",
-        "demolished_dt": "2018-06-15T00:00:00.000Z",
-        "significance_summ": "Heritage Character Statement\r\nThis brick structure is typical of the Edwardian Commercial style.  It features: load bearing brick with sandstone sills, pressed metal entablature and signband cornice, double hung wood windows, and, recessed storefronts.  Located on the border of the warehouse district, it is symbolic of the commercial development trend in Victoria Park which followed the street car route.   It forms part of the historic grouping of buildings along Macleod Trail.\r\n\r\nSummary History\r\nThe Deutsch Canadier Block was one of many low-rise Edwardian commercial/residential buildings constructed during Calgary's pre-World War I boom.  It was built along the original streetcar line that connected downtown Calgary with the exhibition grounds in 1909.  Joseph Schuster and Charles Pohl acquired these lots from Isaac Gideon Ruttle in 1909, and took out a building permit, recorded on 15 March 1910, for a business block to be built by day labour at an estimated cost of $13,000.00.  Within the year, however, the building became property of F.C. Lowes & Co., and remained so until 1922.  Frederick C. Lowes was a real estate agent, speculator, developer and financial broker who became one of the city's most successful and prominent businessmen during the boom.  He made, and then lost, millions of dollars.  Lowes' experience symbolized Calgary's boom-bust experience of the period.  Later owners included Black and Armstrong of Winnipeg (1922-1944), Louis Belzberg and Max Switzer (1944-1957), and Howard and Leo Blitt (1957-1978).\r\n\r\nCharles Pohl was president of Der Deutsch-Canadier, Limited, and Joseph Schuster was its secretary.  The firm published two German-language newspapers and operated a job printing press, advertising a capacity to print in English, German, French, Italian, Polish and other languages.  The company moved to Calgary from Edmonton in 1909, and became this building's namesake occupant. Der Deutsch-Canadier, a weekly newspaper billed as \"Western Canada's Largest German Paper\", was published in Calgary from 1909-1914.  In 1913, the paper announced its intention to become \"a link between all German-Canadians in Western Canada\".  The Deutsch-Canadischer Farmer, which Schuster managed, was published in Calgary from 1909 until about 1912, and was billed as \"the only German Farm Journal West of Ontario\".  The company and its newspapers were relocated to another building by 1912, and by 1914, both the printing business and the two newspapers had folded.  Schuster died suddenly in 1912, and the company was liquidated in 1914.  World War I broke out in August 1914, and anti-German attitudes quickly emerged.  The Deutsch-Canadier ceased publication around December 1914, and Pohl left the city about that time.  The building was renamed the Eastern Block.\r\n\r\nThe building's most notable residential tenant was Andrew Davison, a linotype operator for the Calgary News Telegram who lived in the building briefly around 1914.  Davison was elected to city council as an alderman in 1921, and served as mayor from 1930 to 1946 - a record that remains unmatched in Calgary's history.\r\n\r\nBesides its apartments, the building includes six storefronts facing Macleod Trail S.E.  Its occupants have included grocery and confectionery stores, butcher shops, pharmacies, barbers, shoemakers, and other shops and services (including a branch of the Merchants Bank of Canada, circa 1910-1911).  Building owners, Leo and Howard Blitt, also owned one of its commercial occupants, the Black & White Grocery and Confectionery.",
-        "federal_dsgtn": false,
-        "provincial_dsgtn": false,
-        "registered_dsgtn": false,
-        "municipal_dsgtn": false,
-        "integrity_loc": "true",
-        "integrity_des": "true",
-        "integrity_envir": "N/A",
-        "integrity_assoc": "true",
-        "is_featured_resource": "No",
-        "evaluation_author": "Simpson",
-        "last_update_dt": "2018-06-21T14:54:50.000Z",
-        "picture_type": "Contemporary",
-        "pic_url": "https://www.calgary.ca/Historic_Resource_Media/7046.jpg",
-        "point": {
-            "type": "Point",
-            "coordinates": [-114.0586247, 51.0405913]
-    }},
-    {
-        "id": "165",
-        "name": "place 5",
-        "resource_ty": "CWHR",
-        "address": "1227 MACLEOD TR SE",
-        "community": "BELTLINE",
-        "construction_yr": "1910",
-        "typology": "Shop and Apartment",
-        "orig_use_ty": "Mixed Use",
-        "orig_owner": "Unknown",
-        "master_plan_theme": "Urban Development",
-        "architect": "Plan Pattern Book",
-        "architecture_style": "Edwardian Commercial",
-        "builder": "Unknown",
-        "development_era": "1906 to 1913 (Pre WWI Boom, Age of Optimism)",
-        "activity_crit": "N/A",
-        "event_crit": "N/A",
-        "institution_crit": "N/A",
-        "person_crit": "CWHR",
-        "style_crit": "CHR",
-        "design_crit": "N/A",
-        "const_crit": "CHR",
-        "landmark_crit": "CHR",
-        "symbolic_crit": "CWHR",
-        "demolished_dt": "2018-06-15T00:00:00.000Z",
-        "significance_summ": "Heritage Character Statement\r\nThis brick structure is typical of the Edwardian Commercial style.  It features: load bearing brick with sandstone sills, pressed metal entablature and signband cornice, double hung wood windows, and, recessed storefronts.  Located on the border of the warehouse district, it is symbolic of the commercial development trend in Victoria Park which followed the street car route.   It forms part of the historic grouping of buildings along Macleod Trail.\r\n\r\nSummary History\r\nThe Deutsch Canadier Block was one of many low-rise Edwardian commercial/residential buildings constructed during Calgary's pre-World War I boom.  It was built along the original streetcar line that connected downtown Calgary with the exhibition grounds in 1909.  Joseph Schuster and Charles Pohl acquired these lots from Isaac Gideon Ruttle in 1909, and took out a building permit, recorded on 15 March 1910, for a business block to be built by day labour at an estimated cost of $13,000.00.  Within the year, however, the building became property of F.C. Lowes & Co., and remained so until 1922.  Frederick C. Lowes was a real estate agent, speculator, developer and financial broker who became one of the city's most successful and prominent businessmen during the boom.  He made, and then lost, millions of dollars.  Lowes' experience symbolized Calgary's boom-bust experience of the period.  Later owners included Black and Armstrong of Winnipeg (1922-1944), Louis Belzberg and Max Switzer (1944-1957), and Howard and Leo Blitt (1957-1978).\r\n\r\nCharles Pohl was president of Der Deutsch-Canadier, Limited, and Joseph Schuster was its secretary.  The firm published two German-language newspapers and operated a job printing press, advertising a capacity to print in English, German, French, Italian, Polish and other languages.  The company moved to Calgary from Edmonton in 1909, and became this building's namesake occupant. Der Deutsch-Canadier, a weekly newspaper billed as \"Western Canada's Largest German Paper\", was published in Calgary from 1909-1914.  In 1913, the paper announced its intention to become \"a link between all German-Canadians in Western Canada\".  The Deutsch-Canadischer Farmer, which Schuster managed, was published in Calgary from 1909 until about 1912, and was billed as \"the only German Farm Journal West of Ontario\".  The company and its newspapers were relocated to another building by 1912, and by 1914, both the printing business and the two newspapers had folded.  Schuster died suddenly in 1912, and the company was liquidated in 1914.  World War I broke out in August 1914, and anti-German attitudes quickly emerged.  The Deutsch-Canadier ceased publication around December 1914, and Pohl left the city about that time.  The building was renamed the Eastern Block.\r\n\r\nThe building's most notable residential tenant was Andrew Davison, a linotype operator for the Calgary News Telegram who lived in the building briefly around 1914.  Davison was elected to city council as an alderman in 1921, and served as mayor from 1930 to 1946 - a record that remains unmatched in Calgary's history.\r\n\r\nBesides its apartments, the building includes six storefronts facing Macleod Trail S.E.  Its occupants have included grocery and confectionery stores, butcher shops, pharmacies, barbers, shoemakers, and other shops and services (including a branch of the Merchants Bank of Canada, circa 1910-1911).  Building owners, Leo and Howard Blitt, also owned one of its commercial occupants, the Black & White Grocery and Confectionery.",
-        "federal_dsgtn": false,
-        "provincial_dsgtn": false,
-        "registered_dsgtn": false,
-        "municipal_dsgtn": false,
-        "integrity_loc": "true",
-        "integrity_des": "true",
-        "integrity_envir": "N/A",
-        "integrity_assoc": "true",
-        "is_featured_resource": "No",
-        "evaluation_author": "Simpson",
-        "last_update_dt": "2018-06-21T14:54:50.000Z",
-        "picture_type": "Contemporary",
-        "pic_url": "https://www.calgary.ca/Historic_Resource_Media/7046.jpg",
-        "point": {
-            "type": "Point",
-            "coordinates": [-114.0586247, 51.0405913]
-        }
-    },
-    {
-        "id": "166",
-        "name": "Place 6",
-        "resource_ty": "CWHR",
-        "address": "1227 MACLEOD TR SE",
-        "community": "BELTLINE",
-        "construction_yr": "1910",
-        "typology": "Shop and Apartment",
-        "orig_use_ty": "Mixed Use",
-        "orig_owner": "Unknown",
-        "master_plan_theme": "Urban Development",
-        "architect": "Plan Pattern Book",
-        "architecture_style": "Edwardian Commercial",
-        "builder": "Unknown",
-        "development_era": "1906 to 1913 (Pre WWI Boom, Age of Optimism)",
-        "activity_crit": "N/A",
-        "event_crit": "N/A",
-        "institution_crit": "N/A",
-        "person_crit": "CWHR",
-        "style_crit": "CHR",
-        "design_crit": "N/A",
-        "const_crit": "CHR",
-        "landmark_crit": "CHR",
-        "symbolic_crit": "CWHR",
-        "demolished_dt": "2018-06-15T00:00:00.000Z",
-        "significance_summ": "Heritage Character Statement\r\nThis brick structure is typical of the Edwardian Commercial style.  It features: load bearing brick with sandstone sills, pressed metal entablature and signband cornice, double hung wood windows, and, recessed storefronts.  Located on the border of the warehouse district, it is symbolic of the commercial development trend in Victoria Park which followed the street car route.   It forms part of the historic grouping of buildings along Macleod Trail.\r\n\r\nSummary History\r\nThe Deutsch Canadier Block was one of many low-rise Edwardian commercial/residential buildings constructed during Calgary's pre-World War I boom.  It was built along the original streetcar line that connected downtown Calgary with the exhibition grounds in 1909.  Joseph Schuster and Charles Pohl acquired these lots from Isaac Gideon Ruttle in 1909, and took out a building permit, recorded on 15 March 1910, for a business block to be built by day labour at an estimated cost of $13,000.00.  Within the year, however, the building became property of F.C. Lowes & Co., and remained so until 1922.  Frederick C. Lowes was a real estate agent, speculator, developer and financial broker who became one of the city's most successful and prominent businessmen during the boom.  He made, and then lost, millions of dollars.  Lowes' experience symbolized Calgary's boom-bust experience of the period.  Later owners included Black and Armstrong of Winnipeg (1922-1944), Louis Belzberg and Max Switzer (1944-1957), and Howard and Leo Blitt (1957-1978).\r\n\r\nCharles Pohl was president of Der Deutsch-Canadier, Limited, and Joseph Schuster was its secretary.  The firm published two German-language newspapers and operated a job printing press, advertising a capacity to print in English, German, French, Italian, Polish and other languages.  The company moved to Calgary from Edmonton in 1909, and became this building's namesake occupant. Der Deutsch-Canadier, a weekly newspaper billed as \"Western Canada's Largest German Paper\", was published in Calgary from 1909-1914.  In 1913, the paper announced its intention to become \"a link between all German-Canadians in Western Canada\".  The Deutsch-Canadischer Farmer, which Schuster managed, was published in Calgary from 1909 until about 1912, and was billed as \"the only German Farm Journal West of Ontario\".  The company and its newspapers were relocated to another building by 1912, and by 1914, both the printing business and the two newspapers had folded.  Schuster died suddenly in 1912, and the company was liquidated in 1914.  World War I broke out in August 1914, and anti-German attitudes quickly emerged.  The Deutsch-Canadier ceased publication around December 1914, and Pohl left the city about that time.  The building was renamed the Eastern Block.\r\n\r\nThe building's most notable residential tenant was Andrew Davison, a linotype operator for the Calgary News Telegram who lived in the building briefly around 1914.  Davison was elected to city council as an alderman in 1921, and served as mayor from 1930 to 1946 - a record that remains unmatched in Calgary's history.\r\n\r\nBesides its apartments, the building includes six storefronts facing Macleod Trail S.E.  Its occupants have included grocery and confectionery stores, butcher shops, pharmacies, barbers, shoemakers, and other shops and services (including a branch of the Merchants Bank of Canada, circa 1910-1911).  Building owners, Leo and Howard Blitt, also owned one of its commercial occupants, the Black & White Grocery and Confectionery.",
-        "federal_dsgtn": false,
-        "provincial_dsgtn": false,
-        "registered_dsgtn": false,
-        "municipal_dsgtn": false,
-        "integrity_loc": "true",
-        "integrity_des": "true",
-        "integrity_envir": "N/A",
-        "integrity_assoc": "true",
-        "is_featured_resource": "No",
-        "evaluation_author": "Simpson",
-        "last_update_dt": "2018-06-21T14:54:50.000Z",
-        "picture_type": "Contemporary",
-        "pic_url": "https://www.calgary.ca/Historic_Resource_Media/7046.jpg",
-        "point": {
-            "type": "Point",
-            "coordinates": [-114.0586247, 51.0405913]
-    }},
-    {
-        "id": "167",
-        "name": "place 7",
-        "resource_ty": "CWHR",
-        "address": "1227 MACLEOD TR SE",
-        "community": "BELTLINE",
-        "construction_yr": "1910",
-        "typology": "Shop and Apartment",
-        "orig_use_ty": "Mixed Use",
-        "orig_owner": "Unknown",
-        "master_plan_theme": "Urban Development",
-        "architect": "Plan Pattern Book",
-        "architecture_style": "Edwardian Commercial",
-        "builder": "Unknown",
-        "development_era": "1906 to 1913 (Pre WWI Boom, Age of Optimism)",
-        "activity_crit": "N/A",
-        "event_crit": "N/A",
-        "institution_crit": "N/A",
-        "person_crit": "CWHR",
-        "style_crit": "CHR",
-        "design_crit": "N/A",
-        "const_crit": "CHR",
-        "landmark_crit": "CHR",
-        "symbolic_crit": "CWHR",
-        "demolished_dt": "2018-06-15T00:00:00.000Z",
-        "significance_summ": "Heritage Character Statement\r\nThis brick structure is typical of the Edwardian Commercial style.  It features: load bearing brick with sandstone sills, pressed metal entablature and signband cornice, double hung wood windows, and, recessed storefronts.  Located on the border of the warehouse district, it is symbolic of the commercial development trend in Victoria Park which followed the street car route.   It forms part of the historic grouping of buildings along Macleod Trail.\r\n\r\nSummary History\r\nThe Deutsch Canadier Block was one of many low-rise Edwardian commercial/residential buildings constructed during Calgary's pre-World War I boom.  It was built along the original streetcar line that connected downtown Calgary with the exhibition grounds in 1909.  Joseph Schuster and Charles Pohl acquired these lots from Isaac Gideon Ruttle in 1909, and took out a building permit, recorded on 15 March 1910, for a business block to be built by day labour at an estimated cost of $13,000.00.  Within the year, however, the building became property of F.C. Lowes & Co., and remained so until 1922.  Frederick C. Lowes was a real estate agent, speculator, developer and financial broker who became one of the city's most successful and prominent businessmen during the boom.  He made, and then lost, millions of dollars.  Lowes' experience symbolized Calgary's boom-bust experience of the period.  Later owners included Black and Armstrong of Winnipeg (1922-1944), Louis Belzberg and Max Switzer (1944-1957), and Howard and Leo Blitt (1957-1978).\r\n\r\nCharles Pohl was president of Der Deutsch-Canadier, Limited, and Joseph Schuster was its secretary.  The firm published two German-language newspapers and operated a job printing press, advertising a capacity to print in English, German, French, Italian, Polish and other languages.  The company moved to Calgary from Edmonton in 1909, and became this building's namesake occupant. Der Deutsch-Canadier, a weekly newspaper billed as \"Western Canada's Largest German Paper\", was published in Calgary from 1909-1914.  In 1913, the paper announced its intention to become \"a link between all German-Canadians in Western Canada\".  The Deutsch-Canadischer Farmer, which Schuster managed, was published in Calgary from 1909 until about 1912, and was billed as \"the only German Farm Journal West of Ontario\".  The company and its newspapers were relocated to another building by 1912, and by 1914, both the printing business and the two newspapers had folded.  Schuster died suddenly in 1912, and the company was liquidated in 1914.  World War I broke out in August 1914, and anti-German attitudes quickly emerged.  The Deutsch-Canadier ceased publication around December 1914, and Pohl left the city about that time.  The building was renamed the Eastern Block.\r\n\r\nThe building's most notable residential tenant was Andrew Davison, a linotype operator for the Calgary News Telegram who lived in the building briefly around 1914.  Davison was elected to city council as an alderman in 1921, and served as mayor from 1930 to 1946 - a record that remains unmatched in Calgary's history.\r\n\r\nBesides its apartments, the building includes six storefronts facing Macleod Trail S.E.  Its occupants have included grocery and confectionery stores, butcher shops, pharmacies, barbers, shoemakers, and other shops and services (including a branch of the Merchants Bank of Canada, circa 1910-1911).  Building owners, Leo and Howard Blitt, also owned one of its commercial occupants, the Black & White Grocery and Confectionery.",
-        "federal_dsgtn": false,
-        "provincial_dsgtn": false,
-        "registered_dsgtn": false,
-        "municipal_dsgtn": false,
-        "integrity_loc": "true",
-        "integrity_des": "true",
-        "integrity_envir": "N/A",
-        "integrity_assoc": "true",
-        "is_featured_resource": "No",
-        "evaluation_author": "Simpson",
-        "last_update_dt": "2018-06-21T14:54:50.000Z",
-        "picture_type": "Contemporary",
-        "pic_url": "https://www.calgary.ca/Historic_Resource_Media/7046.jpg",
-        "point": {
-            "type": "Point",
-            "coordinates": [-114.0586247, 51.0405913]
-        }
-    },
-    {
-        "id": "168",
-        "name": "Place 8",
-        "resource_ty": "CWHR",
-        "address": "1227 MACLEOD TR SE",
-        "community": "BELTLINE",
-        "construction_yr": "1910",
-        "typology": "Shop and Apartment",
-        "orig_use_ty": "Mixed Use",
-        "orig_owner": "Unknown",
-        "master_plan_theme": "Urban Development",
-        "architect": "Plan Pattern Book",
-        "architecture_style": "Edwardian Commercial",
-        "builder": "Unknown",
-        "development_era": "1906 to 1913 (Pre WWI Boom, Age of Optimism)",
-        "activity_crit": "N/A",
-        "event_crit": "N/A",
-        "institution_crit": "N/A",
-        "person_crit": "CWHR",
-        "style_crit": "CHR",
-        "design_crit": "N/A",
-        "const_crit": "CHR",
-        "landmark_crit": "CHR",
-        "symbolic_crit": "CWHR",
-        "demolished_dt": "2018-06-15T00:00:00.000Z",
-        "significance_summ": "Heritage Character Statement\r\nThis brick structure is typical of the Edwardian Commercial style.  It features: load bearing brick with sandstone sills, pressed metal entablature and signband cornice, double hung wood windows, and, recessed storefronts.  Located on the border of the warehouse district, it is symbolic of the commercial development trend in Victoria Park which followed the street car route.   It forms part of the historic grouping of buildings along Macleod Trail.\r\n\r\nSummary History\r\nThe Deutsch Canadier Block was one of many low-rise Edwardian commercial/residential buildings constructed during Calgary's pre-World War I boom.  It was built along the original streetcar line that connected downtown Calgary with the exhibition grounds in 1909.  Joseph Schuster and Charles Pohl acquired these lots from Isaac Gideon Ruttle in 1909, and took out a building permit, recorded on 15 March 1910, for a business block to be built by day labour at an estimated cost of $13,000.00.  Within the year, however, the building became property of F.C. Lowes & Co., and remained so until 1922.  Frederick C. Lowes was a real estate agent, speculator, developer and financial broker who became one of the city's most successful and prominent businessmen during the boom.  He made, and then lost, millions of dollars.  Lowes' experience symbolized Calgary's boom-bust experience of the period.  Later owners included Black and Armstrong of Winnipeg (1922-1944), Louis Belzberg and Max Switzer (1944-1957), and Howard and Leo Blitt (1957-1978).\r\n\r\nCharles Pohl was president of Der Deutsch-Canadier, Limited, and Joseph Schuster was its secretary.  The firm published two German-language newspapers and operated a job printing press, advertising a capacity to print in English, German, French, Italian, Polish and other languages.  The company moved to Calgary from Edmonton in 1909, and became this building's namesake occupant. Der Deutsch-Canadier, a weekly newspaper billed as \"Western Canada's Largest German Paper\", was published in Calgary from 1909-1914.  In 1913, the paper announced its intention to become \"a link between all German-Canadians in Western Canada\".  The Deutsch-Canadischer Farmer, which Schuster managed, was published in Calgary from 1909 until about 1912, and was billed as \"the only German Farm Journal West of Ontario\".  The company and its newspapers were relocated to another building by 1912, and by 1914, both the printing business and the two newspapers had folded.  Schuster died suddenly in 1912, and the company was liquidated in 1914.  World War I broke out in August 1914, and anti-German attitudes quickly emerged.  The Deutsch-Canadier ceased publication around December 1914, and Pohl left the city about that time.  The building was renamed the Eastern Block.\r\n\r\nThe building's most notable residential tenant was Andrew Davison, a linotype operator for the Calgary News Telegram who lived in the building briefly around 1914.  Davison was elected to city council as an alderman in 1921, and served as mayor from 1930 to 1946 - a record that remains unmatched in Calgary's history.\r\n\r\nBesides its apartments, the building includes six storefronts facing Macleod Trail S.E.  Its occupants have included grocery and confectionery stores, butcher shops, pharmacies, barbers, shoemakers, and other shops and services (including a branch of the Merchants Bank of Canada, circa 1910-1911).  Building owners, Leo and Howard Blitt, also owned one of its commercial occupants, the Black & White Grocery and Confectionery.",
-        "federal_dsgtn": false,
-        "provincial_dsgtn": false,
-        "registered_dsgtn": false,
-        "municipal_dsgtn": false,
-        "integrity_loc": "true",
-        "integrity_des": "true",
-        "integrity_envir": "N/A",
-        "integrity_assoc": "true",
-        "is_featured_resource": "No",
-        "evaluation_author": "Simpson",
-        "last_update_dt": "2018-06-21T14:54:50.000Z",
-        "picture_type": "Contemporary",
-        "pic_url": "https://www.calgary.ca/Historic_Resource_Media/7046.jpg",
-        "point": {
-            "type": "Point",
-            "coordinates": [-114.0586247, 51.0405913]
-    }
-}];
+const url = "http://10.13.149.40:4344/sites/"
 
 export default function MenuScreen({ navigation }) {
+    const [markers, setMarkers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        fetch(url)
+            .then((response) => response.json())
+            .then((responseJson) =>{
+                let ms = responseJson.map(({ _id:{$oid}, name, pic_url}) => {
+                    let x = { _id:{$oid}, name, pic_url };
+                    return x;
+                }); 
+                return ms
+            })
+            .then( markers => {
+                setMarkers(markers)
+                setLoading(false)
+            })
+            .catch( error => {
+                console.log(error)
+            });
+    }, []);
+
     return (
         <SafeAreaProvider>
             <View style={layout.page}>
@@ -375,20 +47,21 @@ export default function MenuScreen({ navigation }) {
                         />
                         ))
                     }
-                    // style={{ width: 175 }}
-                    keyExtractor={(item) => item.id}
-                    data={list}
+                    keyExtractor={(item) => item._id.$oid}
+                    data={markers}
                     numColumns={2}
-                    renderItem={renderItem}
-                    style = {{marginTop:5}}
+                    renderItem={(item) => renderItem(navigation, item)}
                 />
             </View>
         </SafeAreaProvider>
 )};
 
-const renderItem = ({item}) => (
-    <View style={layout.card}>
-        <Image style={images.card} source={{uri: item.pic_url}}/>
-        <Text style={text.card}>{item.name}</Text>
-    </View>
-)
+function renderItem( navigation, item ) {
+    return (
+        <Pressable style={layout.card} onPress={() => {console.log(item.item._id.$oid)}}>
+            {/* // <Pressable style={layout.card} onPress={() => {navigation.navigate("CardInfo")}}> */}
+            <Image style={images.card} source={{uri: item.item.pic_url}}/>
+            <Text style={text.card}>{item.item.name}</Text>
+        </Pressable>
+    );
+}
