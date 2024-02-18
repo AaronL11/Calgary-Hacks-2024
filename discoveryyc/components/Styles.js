@@ -5,25 +5,26 @@ export const themeColours = {
     silver: "#BFB5AF",
     bone: "#ECE2D0",
     pink: "#D5B9B2",
-    teal: "#0F7173"};
-export const bottomBarStyles = {iconSize: PixelRatio.getPixelSizeForLayoutSize(10), activeBackColour: '#C59F96', inactiveBackColour: '#D5B9B2'};
+    teal: "#0F7173"
+};
+export const bottomBarStyles = { iconSize: PixelRatio.getPixelSizeForLayoutSize(10), activeBackColour: '#C59F96', inactiveBackColour: '#D5B9B2' };
 
 export const layout = StyleSheet.create({
     page: {
         flex: 1,
-        flexDirection:'column', 
+        flexDirection: 'column',
         backgroundColor: themeColours.bone,
         margin: 0
     },
     homePage: {
         flex: 1,
-        flexDirection:'column',
+        flexDirection: 'column',
         justifyContent: 'flex-start',
         backgroundColor: themeColours.bone,
         margin: 0
     },
-    card:  {
-        flex:1,
+    card: {
+        flex: 1,
         backgroundColor: 'white',
         padding: 20,
         height: 200,
@@ -31,6 +32,22 @@ export const layout = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 8,
         marginHorizontal: 16,
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 3, height: 3 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+    },
+    card1:  {
+        flex:2,
+        backgroundColor: 'white',
+        padding: 20,
+        maxHeight: 300,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 8,
+        marginHorizontal: 16,
+        marginBottom:5,
         borderRadius: 8,
         shadowColor: '#000',
         shadowOffset: { width: 3, height: 3 },
@@ -70,7 +87,7 @@ export const text = StyleSheet.create({
         marginTop: 20
     },
     titlesRed: {
-        flex: 1,
+        marginBottom:5,
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
@@ -81,13 +98,13 @@ export const text = StyleSheet.create({
 
 export const buttons = StyleSheet.create({
     primary: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 30,
-      width: '45%',
-      height: '30%',
-      marginTop: '15%',
-      backgroundColor: themeColours.teal
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 30,
+        width: '45%',
+        height: '30%',
+        marginTop: '15%',
+        backgroundColor: themeColours.teal
     }
 });
 
@@ -105,22 +122,23 @@ export const inputBox = StyleSheet.create({
         borderRadius: 50,
         fontSize: 24,
         margin: 10,
+        paddingLeft: 22,
         width: '90%',
         height: 50,
         backgroundColor: 'white',
-      }
+    }
 });
 
 export const images = StyleSheet.create({
     card: {
-        flex: 2, 
-        aspectRatio: 1.5, 
+        flex: 2,
+        aspectRatio: 1.5,
         maxHeight: 90,
         resizeMode: 'contain',
     },
     page: {
         margin: 20,
-        marginBottom: 0, 
+        marginBottom: 0,
         minHeight: 200,
         resizeMode: 'contain',
     }
