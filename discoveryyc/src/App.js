@@ -3,13 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import { ChakraProvider } from '@chakra-ui/react'
 import TopBar from './Components/TopBar';
-import HomePage from './pages/homePage';
+import MenuPage from './pages/menuPage';
 
 function App() {
   return (
     <ChakraProvider>
       <TopBar/>
-      <HomePage/>
+      <MenuPage/>
     </ChakraProvider>
   )
 }

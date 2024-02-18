@@ -7,10 +7,10 @@ import theme from "../Theme"
 
 export default function TopBar() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" bg="dark">
-      <Container>
+    <Navbar expand="lg" className="bg-body-tertiary" bg="dark" style={{backgroundColor:"#D5B9B2"}}>
+      <Container >
         <Navbar.Brand href="/" style={{margin:3, justifyContent:'center', alignItems:'center'}}>
-            <img title="logo" src={require("../Assets/DiscoverYYC_logo.png")} style={{height:75}}/>
+            <img title="logo" src={require("../Assets/DiscoverYYC_logo.png")} style={{height:75, marginLeft: "auto", marginRight:"auto", backgroundColor:"#D5B9B2"}}/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
