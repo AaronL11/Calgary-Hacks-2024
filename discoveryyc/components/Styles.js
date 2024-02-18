@@ -6,7 +6,7 @@ export const themeColours = {
     bone: "#ECE2D0",
     pink: "#D5B9B2",
     teal: "#0F7173"};
-export const bottomBarStyles = {iconSize: PixelRatio.getPixelSizeForLayoutSize(10), activeBackColour: '#EBAA7B', inactiveBackColour: '#FFBA89'};
+export const bottomBarStyles = {iconSize: PixelRatio.getPixelSizeForLayoutSize(10), activeBackColour: '#C59F96', inactiveBackColour: '#D5B9B2'};
 
 export const layout = StyleSheet.create({
     page: {
