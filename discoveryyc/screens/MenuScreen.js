@@ -16,8 +16,8 @@ export default function MenuScreen({ navigation }) {
         fetch(url)
             .then((response) => response.json())
             .then((responseJson) => {
-                let ms = responseJson.map(({ _id: { $oid }, name, pic_url }) => {
-                    let x = { _id: { $oid }, name, pic_url };
+                let ms = responseJson.map(({ _id: { $oid }, name, pic_url, significance_summ }) => {
+                    let x = { _id: { $oid }, name, pic_url, significance_summ };
                     return x;
                 });
                 return ms
@@ -31,21 +31,6 @@ export default function MenuScreen({ navigation }) {
                 console.log(error)
             });
     }, []);
-
-    const filterByName = () => {
-        const searchTerm = search.toLowerCase();
-        if (!searchTerm.length) {
-            setRenderedMarkers(markers);
-            return;
-        }
-
-        const result = markers.filter((marker) => {
-            return marker.name.toLowerCase().includes(searchTerm);
-        });
-
-        console.log(result.length);
-        setRenderedMarkers(result);
-    }
 
     return (
         <SafeAreaProvider>
@@ -75,14 +60,4 @@ export default function MenuScreen({ navigation }) {
         </SafeAreaProvider>
     )
 };
-
-function renderItem(navigation, item) {
-    return (
-        <Pressable style={layout.card} onPress={() => { console.log(item.item._id.$oid) }}>
-            {/* // <Pressable style={layout.card} onPress={() => {navigation.navigate("CardInfo")}}> */}
-            <Image style={images.card} source={{ uri: item.item.pic_url }} />
-            <Text style={text.card}>{item.item.name}</Text>
-        </Pressable>
-    );
-}
 
