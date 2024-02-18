@@ -35,6 +35,16 @@ export const layout = StyleSheet.create({
         shadowOffset: { width: 3, height: 3 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
+    }, 
+    introBox: {
+        margin:30,
+        marginBottom:30,
+        flex: 1,
+        flexDirection:'column',
+        backgroundColor: "#9fbcbd",
+        justifyContent:"center",
+        borderRadius: "15px"
+        
     }
 });
 
@@ -59,7 +69,16 @@ export const text = StyleSheet.create({
         textAlign: 'center',
         color: themeColours.teal,
         marginTop: 20
-    }
+    },
+    titlesRed: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+        color: themeColours.red,
+        margin:2,
+        textAlign: "center", 
+        fontFamily: "inherit"
+        }
 });
 
 export const buttons = StyleSheet.create({
