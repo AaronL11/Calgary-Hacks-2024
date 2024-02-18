@@ -1,11 +1,12 @@
-use chrono::{DateTime, TimeZone, Utc};
+use chrono::{DateTime, Utc};
 use mongodb::bson::oid::ObjectId;
 use serde::{Deserialize, Serialize}; // Import TimeZone for creating default dates
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Default, Debug, Serialize, Deserialize)]
 pub struct Site {
     #[serde(rename = "_id", skip_serializing_if = "Option::is_none")]
     pub _id: Option<ObjectId>,
+    pub id: String,
     pub municipal_dsgtn: String,
     pub architect: String,
     pub integrity_envir: String,
@@ -17,7 +18,6 @@ pub struct Site {
     pub significance_integrity: String,
     pub address: String,
     pub activity_crit: String,
-    pub id: String,
     pub last_update_dt: DateTime<Utc>,
     pub municipal_dsgtn_dt: DateTime<Utc>,
     pub name: String,
@@ -43,7 +43,7 @@ pub struct Site {
     pub symbolic_crit: String,
     pub typology: String,
     pub picture_type: String,
-    pub point: String,
+    pub point: [f64; 2],
     pub integrity_loc: String,
     pub orig_owner: String,
     pub event_crit: String,
@@ -64,70 +64,4 @@ pub struct Site {
     pub integrity_stmt: String,
     pub construction_yr: String,
     pub evaluation_author: String,
-}
-
-impl Default for Site {
-    fn default() -> Self {
-        Site {
-            _id: Some(ObjectId::new()),
-            municipal_dsgtn: String::new(),
-            architect: String::new(),
-            integrity_envir: String::new(),
-            related_links: Vec::new(),
-            master_plan_theme: String::new(),
-            style_crit: String::new(),
-            provincial_dsgtn: String::new(),
-            is_featured_resource: false,
-            significance_integrity: String::new(),
-            address: String::new(),
-            activity_crit: String::new(),
-            id: String::new(),
-            last_update_dt: Utc.timestamp_opt(0, 0).unwrap(),
-            municipal_dsgtn_dt: Utc.timestamp_opt(0, 0).unwrap(),
-            name: String::new(),
-            landmark_crit: String::new(),
-            integrity_des: String::new(),
-            architecture_style: String::new(),
-            design_crit: String::new(),
-            federal_dsgtn: String::new(),
-            significance_stmt_hist_owner: String::new(),
-            const_crit: String::new(),
-            provincial_dsgtn_dt: Utc.timestamp_opt(0, 0).unwrap(),
-            integrity_workmanship: String::new(),
-            person_crit: String::new(),
-            resource_ty: String::new(),
-            integrity_assoc: String::new(),
-            demolished_dt: None,
-            significance_stmt_hrtg_val: String::new(),
-            development_era: String::new(),
-            municipal_url: String::new(),
-            legal_dscrn: String::new(),
-            institution_crit: String::new(),
-            significance_stmt_src: String::new(),
-            symbolic_crit: String::new(),
-            typology: String::new(),
-            picture_type: String::new(),
-            point: String::new(),
-            integrity_loc: String::new(),
-            orig_owner: String::new(),
-            event_crit: String::new(),
-            integrity_mtrl: String::new(),
-            significance_stmt_dscrn: String::new(),
-            registered_dsgtn: String::new(),
-            significance_stmt_char_elem: String::new(),
-            registered_dsgtn_dt: Utc.timestamp_opt(0, 0).unwrap(),
-            pic_url: String::new(),
-            federal_dsgtn_dt: Utc.timestamp_opt(0, 0).unwrap(),
-            significance_stmt_dir_search: String::new(),
-            comment: String::new(),
-            builder: String::new(),
-            community: String::new(),
-            resource_alternate_nm: String::new(),
-            orig_use_ty: String::new(),
-            significance_summ: String::new(),
-            integrity_stmt: String::new(),
-            construction_yr: String::new(),
-            evaluation_author: String::new(),
-        }
-    }
 }
