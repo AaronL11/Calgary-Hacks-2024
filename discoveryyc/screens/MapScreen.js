@@ -4,7 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { layout, text, images } from '../components/Styles';
 
-const url = 'http://10.13.149.40:4344/sites'
+const url = 'https://discoveryyc.aidandriscoll.tech/sites'
 
 export default function MapScreen({ navigation }) {
     const [markers, setMarkers] = useState([]);
