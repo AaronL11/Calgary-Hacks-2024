@@ -32,6 +32,21 @@ export default function MenuScreen({ navigation }) {
             });
     }, []);
 
+    const filterByName = () => {
+        const searchTerm = search.toLowerCase();
+        if (!searchTerm.length) {
+            setRenderedMarkers(markers);
+            return;
+        }
+
+        const result = markers.filter((marker) => {
+            return marker.name.toLowerCase().includes(searchTerm);
+        });
+
+        console.log(result.length);
+        setRenderedMarkers(result);
+    }
+
     return (
         <SafeAreaProvider>
             <View style={layout.page}>
