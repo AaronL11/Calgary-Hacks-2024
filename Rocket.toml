@@ -1,0 +1,13 @@
+[default]
+address = "0.0.0.0"
+port = 8000
+
+[debug]
+address = "127.0.0.1"
+port = 4344
+
+[release]
+address = "34.168.212.205"
+port = 80
+tls = { certs = "/path/to/certs.pem", key = "/path/to/key.pem" }
+

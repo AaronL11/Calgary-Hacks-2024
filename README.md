@@ -26,6 +26,11 @@ This is the Repository for Calgary Hacks 2024.
     - [ ] Map API
     - [ ] User Accounts
 
+### Web Server
+To run the web server, run one of the following commands depending on your environment:
+    DEV: ROCKET_ENV=debug cargo run
+    PROD: ROCKET_ENV=release cargo run
+
 
 ## Introduction
 
