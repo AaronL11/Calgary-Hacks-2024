@@ -84,9 +84,5 @@ function renderItem(navigation, item) {
             <Text style={text.card}>{item.item.name}</Text>
         </Pressable>
     );
-<<<<<<< HEAD
-}
-=======
 }
 
->>>>>>> 31c739cbe4e672a1d434787a3b8e4c1d176c3a4e
