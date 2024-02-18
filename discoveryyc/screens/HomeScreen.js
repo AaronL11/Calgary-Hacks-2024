@@ -4,7 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import RenderItem from '../components/Item';
 import { layout, text, themeColours, images } from '../components/Styles';
 
-const url = "http://10.13.149.40:4344/sites/"
+const url = "https://discoveryyc.aidandriscoll.tech/sites"
 
 export default function HomeScreen({ navigation }) {
     const [markers, setMarkers] = useState({_id:{$oid:1}, name:"", significance_summ:"", pic_url:"text.png"});
