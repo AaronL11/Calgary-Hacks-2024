@@ -58,8 +58,8 @@ export default function MenuScreen({ navigation }) {
 
 function renderItem( navigation, item ) {
     return (
-        <Pressable style={layout.card} onPress={() => {console.log(item.item._id.$oid)}}>
-            {/* // <Pressable style={layout.card} onPress={() => {navigation.navigate("CardInfo")}}> */}
+        // <Pressable style={layout.card} onPress={() => {console.log(item.item._id.$oid)}}>
+        <Pressable style={layout.card} onPress={() => {navigation.navigate("CardInfo")}}>
             <Image style={images.card} source={{uri: item.item.pic_url}}/>
             <Text style={text.card}>{item.item.name}</Text>
         </Pressable>
