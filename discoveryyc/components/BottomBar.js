@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
 import MenuScreen from '../screens/MenuScreen';
 import MapScreen from '../screens/MapScreen';
+import Rewards from '../screens/Rewards';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +23,9 @@ export default function TabNavigator() {
                       break;
                   case "Map":
                     iconName = focused ? "map" : "map-outline";
+                    break;
+                  case "Rewards":
+                    iconName = focused ? "gift" : "gift-outline";
                     break;
                   default:
                       break;
@@ -49,6 +53,7 @@ export default function TabNavigator() {
     <Tab.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
       <Tab.Screen name="Menu" component={MenuScreen} options={{headerShown: false}}/>
       <Tab.Screen name="Map" component={MapScreen} options={{headerShown: false}}/>
+      <Tab.Screen name="Rewards" component={Rewards} options={{headerShown: false}}/>
   </Tab.Navigator>
   );
 };

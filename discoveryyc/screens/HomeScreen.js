@@ -25,9 +25,6 @@ export default function HomeScreen({ navigation }) {
                 console.log(error)
             });
     }, []);
-
-    // console.log("Marker")
-    // console.log(markers)
      
     return (
         <SafeAreaProvider>

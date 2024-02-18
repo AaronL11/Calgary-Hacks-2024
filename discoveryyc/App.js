@@ -10,7 +10,7 @@ import TabNavigator from './components/BottomBar';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  let loggedIn = false;
+  let loggedIn = true;
   let startScreen;
   if (loggedIn) {
     startScreen = "TabNavigator";
