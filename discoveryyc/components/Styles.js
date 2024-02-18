@@ -20,6 +20,21 @@ export const layout = StyleSheet.create({
         flexDirection:'column',
         backgroundColor: themeColours.bone,
         margin: 0
+    },
+    card:  {
+        flex:1,
+        backgroundColor: 'white',
+        padding: 20,
+        height: 200,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 8,
+        marginHorizontal: 16,
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 3, height: 3 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
     }
 });
 
@@ -29,17 +44,21 @@ export const text = StyleSheet.create({
         fontWeight: 'bold',
         letterSpacing: 0.25,
         color: 'black',
-    },
-    small: {
-        fontSize: 10,
-        letterSpacing: 0.25,
-        color: 'white',
+        margin: 20
     },
     button: {
         fontSize: 25,
         fontWeight: 'bold',
         letterSpacing: 0.25,
-        color: 'white',
+        color: 'white'
+    },
+    card: {
+        flex: 1,
+        fontSize: 10,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: themeColours.teal,
+        marginTop: 20
     }
 });
 
@@ -64,52 +83,22 @@ export const inputBox = StyleSheet.create({
         fontSize: 15,
         marginTop: '10%',
         paddingLeft: 15
-    }
+    },
+    searchBar: {
+        borderRadius: 50,
+        fontSize: 24,
+        margin: 10,
+        width: '90%',
+        height: 50,
+        backgroundColor: 'white',
+      }
 });
 
-export const centStyles = StyleSheet.create({
-    page: {
-        flexDirection: 'column', 
-        flex: 1, 
-        backgroundColor: 'black',
-        marginHorizontal: PixelRatio.getPixelSizeForLayoutSize(3),
-        marginBottom: 0
-    },
-    mainStyle: {
+export const images = StyleSheet.create({
+    card: {
         flex: 2, 
-        flexDirection: 'column', 
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
-        backgroundColor: themeColours.secondary, 
-        borderRadius: 10, 
-        marginBottom: PixelRatio.getPixelSizeForLayoutSize(5), 
-        paddingBottom: PixelRatio.getPixelSizeForLayoutSize(2),
-    },
-    stateStyle: {
-        flex: 1, 
-        alignItems:'center', 
-        borderRadius: 10, 
-        borderWidth:PixelRatio.getPixelSizeForLayoutSize(0.3), 
-        borderColor:'black', 
-        margin: PixelRatio.getPixelSizeForLayoutSize(1), 
-        paddingVertical: PixelRatio.getPixelSizeForLayoutSize(3), 
-    },
-    dataStyle: {
-        flex: 1, 
-        alignItems: 'center', 
-        borderRadius: 10, 
-        borderWidth: PixelRatio.getPixelSizeForLayoutSize(0.3), 
-        borderColor: 'black', 
-        marginHorizontal: PixelRatio.getPixelSizeForLayoutSize(1), 
-        paddingVertical: PixelRatio.getPixelSizeForLayoutSize(2), 
-        backgroundColor: "#333333"
-    },
-    textDisplay: {
-        borderRadius:5, 
-        alignItems:'center', 
-        marginTop: PixelRatio.getPixelSizeForLayoutSize(1), 
-        paddingVertical: PixelRatio.getPixelSizeForLayoutSize(2), 
-        paddingHorizontal: PixelRatio.getPixelSizeForLayoutSize(5), 
-        backgroundColor:'black'
+        aspectRatio: 1.5, 
+        maxHeight: 90,
+        resizeMode: 'contain',
     }
 });
