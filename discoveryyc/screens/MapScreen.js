@@ -31,7 +31,7 @@ export default function MapScreen({ navigation }) {
     return (
         <SafeAreaProvider>
             <View style={layout.page}>
-                <Text style={text.heading}>Map Screen</Text>
+                {/* <Text style={text.heading}>Map Screen</Text> */}
                 <MapView
                     style={{ flex : 1 }}
                     provider={PROVIDER_GOOGLE}
