@@ -9,8 +9,6 @@ export default function RewardsScreen({ navigation }) {
             <View style={layout.page}>
                 <Image style={{width:"100%", maxHeight:"12%", marginBottom:10}} source={require('../assets/calgaryskyline.png')}/>
                 
-
-                
                 <Text style={text.heading}>Rewards System</Text>
                 <Text style={{textAlign:"center", margin: 15}}>
                     Our rewards system is set up for you to be able to enjoy DiscoverYYC to the fullest. 

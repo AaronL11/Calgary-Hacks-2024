@@ -10,7 +10,7 @@ import TabNavigator from './components/BottomBar';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  let loggedIn = true;
+  let loggedIn = false;
   let startScreen;
   if (loggedIn) {
     startScreen = "TabNavigator";
@@ -23,11 +23,7 @@ export default function App() {
       <Stack.Navigator initialRouteName={startScreen}>
         <Stack.Screen name="Login" component={LoginScreen} options={{header: (props) => <Header/>}}/>
         <Stack.Screen name="TabNavigator" component={TabNavigator} options={{header: (props) => <Header/>}}/>
-        <Stack.Screen name="CardInfo" component={CardInfo} 
-          options={{
-            header: (props) => <Header/>, 
-            headerLeft: () => <HeaderBackButton onPress={()=> navigation.canGoBack() ? navigation.goBack() : null}/>
-          }}/>
+        <Stack.Screen name="CardInfo" component={CardInfo} options={{ header: (props) => <Header/> }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

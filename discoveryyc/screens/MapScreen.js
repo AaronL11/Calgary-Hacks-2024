@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import {View, Text } from 'react-native'
+import {View, Text, Image } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import { layout, text } from '../components/Styles';
+import { layout, text, images } from '../components/Styles';
 
 const url = 'http://10.13.149.40:4344/sites'
 
@@ -48,8 +48,6 @@ export default function MapScreen({ navigation }) {
                         let [lon,lat] = coordinates;
                         return (
                         <Marker
-                            flat={true}
-                            icon={'../assets/mapicon.png'}
                             key={index}
                             title={name}
                             description={address}
@@ -57,7 +55,8 @@ export default function MapScreen({ navigation }) {
                                 latitude: lat,
                                 longitude: lon,
                             }}
-                        />
+                        >
+                        </Marker>
                     )})}
                 </MapView>
                 <Text style={text.titlesTeal}>Find historical sites, public art, parks, and more, on the map!</Text>

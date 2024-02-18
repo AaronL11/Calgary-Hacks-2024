@@ -6,7 +6,6 @@ import { IconButton } from '../components/CustomButton';
 
 export default function CardInfo({ route, navigation }) {
     const { item } = route.params.item;
-    console.log(item)
     if (item.significance_summ==null){
         item.significance_summ = "The description for this site is unavailable."
     }
