@@ -3,8 +3,8 @@ address = "0.0.0.0"
 port = 8000
 
 [debug]
-address = "0.0.0.0"
-port = 443
+address = "127.0.0.1"
+port = 4344
 
 [release]
 address = "34.168.212.205"
