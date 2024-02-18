@@ -2,13 +2,30 @@ use chrono::{DateTime, Utc};
 use mongodb::bson::oid::ObjectId;
 use serde::{Deserialize, Serialize}; // Import TimeZone for creating default dates
 
+#[derive(Debug, Serialize, Deserialize)]
+struct Point {
+    #[serde(rename = "type")]
+    point_type: String,
+    coordinates: Vec<f64>,
+}
+
+// Implementing Default for Point
+impl Default for Point {
+    fn default() -> Self {
+        Point {
+            point_type: String::from("Point"), // Or any default value you prefer
+            coordinates: vec![0.0, 0.0],       // Assuming a default point at (0,0)
+        }
+    }
+}
+
 #[derive(Default, Debug, Serialize, Deserialize)]
 pub struct Site {
     #[serde(rename = "_id", skip_serializing_if = "Option::is_none")]
     pub _id: Option<ObjectId>,
     pub architect: Option<String>,
-    pub point: [f64; 2],
-    pub registered_dsgtn_dt: DateTime<Utc>,
+    pub point: Option<Point>,
+    pub registered_dsgtn_dt: Option<DateTime<Utc>>,
     pub pic_url: Option<String>,
     pub address: Option<String>,
     pub demolished_dt: Option<String>,
