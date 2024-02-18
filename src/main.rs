@@ -7,7 +7,7 @@ extern crate rocket;
 
 use api::{
     site_api,
-    site_api::get_site,
+    site_api::{get_all_sites, get_site},
     user_api,
     user_api::{create_user, delete_user, get_all_users, get_user, update_user},
 };
@@ -29,8 +29,9 @@ fn rocket() -> _ {
         .mount("/", routes![get_user])
         .mount("/", routes![update_user])
         .mount("/", routes![delete_user])
-        .mount("/", routes![get_all_users])
-        .mount("/", routes![get_site])
+        .mount("/users", routes![get_all_users])
+        .mount("/sites", routes![get_all_sites])
+        .mount("/site", routes![get_site])
         .register("/", catchers![general_not_found])
         .register("/site", catchers![site_api::not_found])
         .register("/user", catchers![user_api::not_found])

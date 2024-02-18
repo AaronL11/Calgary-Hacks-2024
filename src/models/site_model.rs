@@ -2,66 +2,47 @@ use chrono::{DateTime, Utc};
 use mongodb::bson::oid::ObjectId;
 use serde::{Deserialize, Serialize}; // Import TimeZone for creating default dates
 
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Point {
+    #[serde(rename = "type")]
+    point_type: String,
+    coordinates: Vec<f64>,
+}
+
+// Implementing Default for Point
+impl Default for Point {
+    fn default() -> Self {
+        Point {
+            point_type: String::from("Point"), // Or any default value you prefer
+            coordinates: vec![0.0, 0.0],       // Assuming a default point at (0,0)
+        }
+    }
+}
+
 #[derive(Default, Debug, Serialize, Deserialize)]
 pub struct Site {
     #[serde(rename = "_id", skip_serializing_if = "Option::is_none")]
     pub _id: Option<ObjectId>,
-    pub id: String,
-    pub municipal_dsgtn: String,
-    pub architect: String,
-    pub integrity_envir: String,
-    pub related_links: Vec<String>,
-    pub master_plan_theme: String,
-    pub style_crit: String,
-    pub provincial_dsgtn: String,
-    pub is_featured_resource: bool,
-    pub significance_integrity: String,
-    pub address: String,
-    pub activity_crit: String,
-    pub last_update_dt: DateTime<Utc>,
-    pub municipal_dsgtn_dt: DateTime<Utc>,
-    pub name: String,
-    pub landmark_crit: String,
-    pub integrity_des: String,
-    pub architecture_style: String,
-    pub design_crit: String,
-    pub federal_dsgtn: String,
-    pub significance_stmt_hist_owner: String,
-    pub const_crit: String,
-    pub provincial_dsgtn_dt: DateTime<Utc>,
-    pub integrity_workmanship: String,
-    pub person_crit: String,
-    pub resource_ty: String,
-    pub integrity_assoc: String,
-    pub demolished_dt: Option<DateTime<Utc>>,
-    pub significance_stmt_hrtg_val: String,
-    pub development_era: String,
-    pub municipal_url: String,
-    pub legal_dscrn: String,
-    pub institution_crit: String,
-    pub significance_stmt_src: String,
-    pub symbolic_crit: String,
-    pub typology: String,
-    pub picture_type: String,
-    pub point: [f64; 2],
-    pub integrity_loc: String,
-    pub orig_owner: String,
-    pub event_crit: String,
-    pub integrity_mtrl: String,
-    pub significance_stmt_dscrn: String,
-    pub registered_dsgtn: String,
-    pub significance_stmt_char_elem: String,
-    pub registered_dsgtn_dt: DateTime<Utc>,
-    pub pic_url: String,
-    pub federal_dsgtn_dt: DateTime<Utc>,
-    pub significance_stmt_dir_search: String,
-    pub comment: String,
-    pub builder: String,
-    pub community: String,
-    pub resource_alternate_nm: String,
-    pub orig_use_ty: String,
-    pub significance_summ: String,
-    pub integrity_stmt: String,
-    pub construction_yr: String,
-    pub evaluation_author: String,
+    pub architect: Option<String>,
+    pub point: Option<Point>,
+    pub registered_dsgtn_dt: Option<DateTime<Utc>>,
+    pub pic_url: Option<String>,
+    pub address: Option<String>,
+    pub demolished_dt: Option<String>,
+    pub significance_stmt_dscrn: Option<String>,
+    pub construction_yr: Option<String>,
+    pub significance_stmt_hrtg_val: Option<String>,
+    pub significance_stmt_char_elem: Option<String>,
+    pub significance_summ: Option<String>,
+    pub orig_use_ty: Option<String>,
+    pub significance_stmt_hist_owner: Option<String>,
+    pub community: Option<String>,
+    pub architecture_style: Option<String>,
+    pub builder: Option<String>,
+    pub significance_stmt_dir_search: Option<String>,
+    pub name: Option<String>,
+    pub master_plan_theme: Option<String>,
+    pub development_era: Option<String>,
+    pub last_update_dt: Option<String>,
+    pub orig_owner: Option<String>,
 }

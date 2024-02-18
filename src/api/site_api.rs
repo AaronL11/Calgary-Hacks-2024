@@ -10,6 +10,16 @@ pub fn get_site(db: &State<MongoSites>, path: String) -> Result<Json<Site>, Stat
     let site_detail = db.get_site(&id);
 
     match site_detail {
+        Ok(site) => Ok(Json(site)),
+        Err(_) => Err(Status::InternalServerError),
+    }
+}
+
+#[get("/sites")]
+pub fn get_all_sites(db: &State<MongoSites>) -> Result<Json<Vec<Site>>, Status> {
+    let sites = db.get_all_sites();
+
+    match sites {
         Ok(sites) => Ok(Json(sites)),
         Err(_) => Err(Status::InternalServerError),
     }
@@ -25,5 +35,5 @@ pub fn get_nearest(db: &State<MongoSites>) -> Result<Json<Vec<Site>>, Status> {
 
 #[catch(404)]
 pub fn not_found(req: &Request) -> String {
-    format!("Sorry, {} you fucked up :)", req.uri())
+    format!("Sorry, {} you fucked up getting a site", req.uri())
 }
