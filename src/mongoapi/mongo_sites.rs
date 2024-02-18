@@ -5,7 +5,7 @@ use dotenv::dotenv;
 
 use mongodb::{
     bson::{doc, extjson::de::Error, oid::ObjectId},
-    sync::{Client, Collection},
+    sync::{Client, Collection, Cursor},
 };
 
 use crate::models::site_model::Site;
@@ -46,5 +46,19 @@ impl MongoSites {
         let users = cursors.map(|doc| doc.unwrap()).collect();
 
         Ok(users)
+    }
+
+    pub fn _get_nearest(&self, coordinates: [f64; 2]) -> Result<Cursor<Site>, Error> {
+        let filter = doc! {
+            "point": {
+                "$near": {
+                    "$geometry": {
+                        "type": "Point",
+                        "coordinates": vec![coordinates[0], coordinates[1]]
+                    }
+                }
+            }
+        };
+        Ok(self.col.find(filter, None).ok().unwrap())
     }
 }

@@ -3,7 +3,7 @@ use mongodb::bson::oid::ObjectId;
 use serde::{Deserialize, Serialize}; // Import TimeZone for creating default dates
 
 #[derive(Debug, Serialize, Deserialize)]
-struct Point {
+pub struct Point {
     #[serde(rename = "type")]
     point_type: String,
     coordinates: Vec<f64>,
