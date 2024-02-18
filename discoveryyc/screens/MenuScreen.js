@@ -36,12 +36,18 @@ export default function MenuScreen({ navigation }) {
         <SafeAreaProvider>
             <View style={layout.page}>
                 <Text style={text.heading}>Landmarks</Text>
-                <TextInput
-                    onChangeText={setSearch}
-                    onBlur={() => { filterByName(); }}
-                    returnKeyType='done'
-                    style={inputBox.searchBar}
-                />
+
+                <View style={{ flexDirection:"row"}}>
+                    <TextInput
+                        onChangeText={setSearch}
+                        onBlur={() => { filterByName(); }}
+                        returnKeyType='done'
+                        style={inputBox.searchBar}
+                    />
+                    <Image style={{width:50, height:50, marginTop:10, marginBottom:10, marginRight: 10}} source={require('../assets/search.png')}/>
+                </View>
+                
+
                 <FlatList
                     ItemSeparatorComponent={
                         Platform.OS !== 'android' &&
@@ -61,3 +67,11 @@ export default function MenuScreen({ navigation }) {
     )
 };
 
+function renderItem(navigation, item) {
+    return (
+        <Pressable style={layout.card} onPress={() => { console.log(item.item._id.$oid) }}>
+            {/* // <Pressable style={layout.card} onPress={() => {navigation.navigate("CardInfo")}}> */}
+            <Image style={images.card} source={{ uri: item.item.pic_url }} />
+            <Text style={text.card}>{item.item.name}</Text>
+        </Pressable>
+    );}
