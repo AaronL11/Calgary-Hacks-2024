@@ -2,17 +2,20 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Text } from '@chakra-ui/react';
+import { Text, Flex } from '@chakra-ui/react';
+import theme from "../Theme"
 
 export default function TopBar() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary" bg="dark">
       <Container>
-        {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
+        <Navbar.Brand href="/" style={{margin:3, justifyContent:'center', alignItems:'center'}}>
+            <img title="logo" src={require("../Assets/DiscoverYYC_logo.png")} style={{height:75}}/>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Text>DiscoverYYC</Text>
+          <Nav className="me-auto" style={{margin:3, justifyContent:'center', alignItems:'center'}}>
+            {/* <Text fontSize={'xl'} fontWeight={'medium'} color={'brand.red'}>DiscoverYYC</Text> */}
             {/* <Text>DiscoverYYC</Text> */}
             {/* <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link> */}

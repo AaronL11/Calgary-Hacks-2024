@@ -18,10 +18,6 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
   "theme_red": "#A30A11",
   "theme_silver": "#BFB5AF",
   "theme_bone": "#ECE2D0",
