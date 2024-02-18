@@ -55,8 +55,6 @@ To run the web server, run one of the following commands depending on your envir
 
 This app features all of the historical sites around the city, encouraging users to explore the city by featuring a 'Site of the Day' to visit, a list view of all the sites, and a map view. Clicking into the site will give you the historical background of the location.
 
-A future version of this app would be partenered with official sites in Calgary such as Heritage Park and Calgary Zoo, and each real life visit to a free historic site would allow the user to earn towards free or discounted passes to these sites.
-
 ### Who this is made for?
 
 Anyone who wants to explore Calgary through a historical lens and learn more about what this beautiful city has to offer!
