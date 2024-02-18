@@ -4,7 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { inputBox, layout, text, images } from '../components/Styles';
 import RenderItem from '../components/Item';
 
-const url = "http://10.13.149.40:4344/sites/"
+const url = "https://discoveryyc.aidandriscoll.tech/sites"
 
 export default function MenuScreen({ navigation }) {
     const [markers, setMarkers] = useState([]);
