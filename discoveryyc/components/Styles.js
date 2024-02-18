@@ -18,6 +18,7 @@ export const layout = StyleSheet.create({
     homePage: {
         flex: 1,
         flexDirection:'column',
+        justifyContent: 'flex-start',
         backgroundColor: themeColours.bone,
         margin: 0
     },
@@ -35,16 +36,6 @@ export const layout = StyleSheet.create({
         shadowOffset: { width: 3, height: 3 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
-    }, 
-    introBox: {
-        margin:30,
-        marginBottom:30,
-        flex: 1,
-        flexDirection:'column',
-        backgroundColor: "#9fbcbd",
-        justifyContent:"center",
-        borderRadius: "15px"
-        
     }
 });
 
@@ -71,14 +62,13 @@ export const text = StyleSheet.create({
         marginTop: 20
     },
     titlesRed: {
+        flex: 1,
         fontSize: 30,
         fontWeight: 'bold',
-        letterSpacing: 0.25,
+        textAlign: 'center',
         color: themeColours.red,
-        margin:2,
-        textAlign: "center", 
-        fontFamily: "inherit"
-        }
+        marginTop: 20
+    }
 });
 
 export const buttons = StyleSheet.create({
